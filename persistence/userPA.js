@@ -78,6 +78,31 @@ function updateSingleUser(id, userJson) {
     });
 }
 
+function disableSingleUserById(id) {
+    return new Promise(function (resolve, reject) {
+        try {
+            const sql = "UPDATE users SET " +
+            "status = 'DISABLED' " +
+            "WHERE id = ?";
+            connection.query(sql,
+            [
+                id
+            ],
+            function (error, results) {
+                if (error) {
+                    console.log('disableSingleUserById error = ' + error);
+                    reject(error);
+                } else {
+                    console.log('disableSingleUserById results = ' + results);
+                    resolve(results);
+                }
+            });
+        } catch (e) {
+            console.log('disableSingleUserById error = ' + e);
+            reject(e);
+        }
+    });
+}
 
 //TO-DO: Do not delete User, update status to inactive
 function deleteSingleUserById(id) {
@@ -108,5 +133,6 @@ module.exports = {
     querySingleUserById: querySingleUserById,
     insertUser: insertUser,
     updateSingleUser: updateSingleUser,
+    disableSingleUserById: disableSingleUserById,
     deleteSingleUserById: deleteSingleUserById
 }

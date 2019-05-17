@@ -121,6 +121,32 @@ function updateSingleEvent(id, eventJson) {
     });    
 }
 
+function disableSingleEvent(id) {
+    return new Promise(function (resolve, reject) {
+        try {
+            const sql = "UPDATE events SET " +
+            "status = 'DISABLED' " +
+            "WHERE id = ?";
+            connection.query(sql,
+            [
+                id
+            ],
+            function (error, results) {
+                if (error) {
+                    console.log('updateSingleEvent error = ' + error);
+                    reject(error);
+                } else {
+                    console.log('updateSingleEvent results = ' + results);
+                    resolve(results);
+                }
+            });
+        } catch (e) {
+            console.log('disableSingleEvent error = ' + e);
+            reject(e);
+        }
+    });
+}
+
 //TO-DO: Do not delete event, update status
 function deleteSingleEventById(id) {
     console.log('deleteSingleEventById id = ' + id);
@@ -150,5 +176,6 @@ module.exports = {
     insertEvent: insertEvent,
     querySingleEventById: querySingleEventById,
     updateSingleEvent: updateSingleEvent,
+    disableSingleEvent: disableSingleEvent,
     deleteSingleEventById: deleteSingleEventById
 }

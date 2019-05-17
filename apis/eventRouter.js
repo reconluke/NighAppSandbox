@@ -37,6 +37,14 @@ async function putEvent(req, res){
     let result = await eventPa.updateSingleEvent(id, body);
     res.send(result);
 };
+async function disableEvent(req, res){
+    console.log('disable event');
+    let id = req.params.id;
+    let body = req.body;
+    console.log('disable event body = '+JSON.stringify(body));
+    let result = await eventPa.disableSingleEventById(id);
+    res.send(result);
+};
 async function deleteEvent(req, res){
     console.log('delete event');
     let id = req.params.id;
@@ -49,6 +57,7 @@ module.exports = {
     getEvents : getEvents,
     postEvent : postEvent,
     putEvent : putEvent,
+    disableEvent : disableEvent,
     deleteEvent : deleteEvent
 
 }

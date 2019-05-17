@@ -87,6 +87,32 @@ function updateSingleAccept(id, acceptJson) {
     });
 }
 
+function disableSingleAcceptById(id) {
+    return new Promise(function (resolve, reject) {
+        try {
+            const sql = "UPDATE accepts SET " +
+            "status = 'DISABLED' " +
+            "WHERE id = ?";
+            connection.query(sql,
+            [
+                id
+            ],
+            function (error, results) {
+                if (error) {
+                    console.log('disableSingleAcceptById error = ' + error);
+                    reject(error);
+                } else {
+                    console.log('disableSingleAcceptById results = ' + results);
+                    resolve(results);
+                }
+            });
+        } catch (e) {
+            console.log('disableSingleAcceptById error = ' + e);
+            reject(e);
+        }
+    });
+}
+
 //TO-DO: Do not delete event, update status
 function deleteSingleAcceptById(id) {
     console.log('deleteSingleAcceptById id = ' + id);
@@ -116,5 +142,6 @@ module.exports = {
     querySingleAcceptById: querySingleAcceptById,
     insertAccept: insertAccept,
     updateSingleAccept: updateSingleAccept,
+    disableSingleAcceptById: disableSingleAcceptById,
     deleteSingleAcceptById: deleteSingleAcceptById
 }

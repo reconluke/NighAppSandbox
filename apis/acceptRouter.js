@@ -35,6 +35,14 @@ async function putAccept(req, res){
     let result = await acceptPA.updateSingleAccept(id, body);
     res.send(result);
 };
+async function disableAccept(req, res){
+    console.log('disable accept');
+    let id = req.params.id;
+    let body = req.body;
+    console.log('disable accept body = '+JSON.stringify(body));
+    let result = await acceptPA.disableSingleAcceptById(id);
+    res.send(result);
+};
 async function deleteAccept(req, res){
     console.log('delete accept');
     let id = req.params.id;
@@ -47,5 +55,6 @@ module.exports = {
     getAccepts : getAccepts,
     postAccept : postAccept,
     putAccept : putAccept,
+    disableAccept : disableAccept,
     deleteAccept : deleteAccept
 }

@@ -35,6 +35,14 @@ async function putUser(req, res){
     let result = await userPA.updateSingleUser(id, body);
     res.send(result);
 };
+async function disableUser(req, res){
+    console.log('disable user');
+    let id = req.params.id;
+    let body = req.body;
+    console.log('disable user body = '+JSON.stringify(body));
+    let result = await userPA.disableSingleUserById(id);
+    res.send(result);
+};
 async function deleteUser(req, res){
     console.log('delete user');
     let id = req.params.id;
@@ -47,5 +55,6 @@ module.exports = {
     getUsers : getUsers,
     postUser : postUser,
     putUser : putUser,
+    disableUser : disableUser,
     deleteUser : deleteUser
 }

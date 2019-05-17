@@ -23,7 +23,9 @@ app.get('/api/events/:id', eventRouter.getEvent);
 app.get('/api/events', eventRouter.getEvents);
 app.post('/api/events', eventRouter.postEvent);
 app.put('/api/events/:id', eventRouter.putEvent);
-app.delete('/api/events/:id', eventRouter.deleteEvent);
+app.put('/api/events/disable/:id', eventRouter.disableEvent);
+//COMMENTED DELETE UNTIL IF/WHEN SQL LOGIC ADDED.
+//pp.delete('/api/events/:id', eventRouter.deleteEvent);
 //EVENT ENDPOINT SPECS END HERE
 
 //ACCEPT ENDPOINT SPECS START HERE
@@ -31,7 +33,9 @@ app.get('/api/accepts/:id', acceptRouter.getAccept);
 app.get('/api/accepts', acceptRouter.getAccepts);
 app.post('/api/accepts', acceptRouter.postAccept);
 app.put('/api/accepts/:id', acceptRouter.putAccept);
-app.delete('/api/accepts/:id', acceptRouter.deleteAccept);
+app.put('/api/accepts/disable/:id', acceptRouter.disableAccept);
+//COMMENTED DELETE UNTIL IF/WHEN SQL LOGIC ADDED.
+//app.delete('/api/accepts/:id', acceptRouter.deleteAccept);
 //ACCEPT ENDPOINT SPECS END HERE
 
 //USER ENDPOINT SPECS START HERE
@@ -39,7 +43,9 @@ app.get('/api/users/:id', userRouter.getUser);
 app.get('/api/users', userRouter.getUsers);
 app.post('/api/users', userRouter.postUser);
 app.put('/api/users/:id', userRouter.putUser);
-app.delete('/api/users/:id', userRouter.deleteUser);
+app.put('/api/users/disable/:id', userRouter.disableUser);
+//COMMENTED DELETE UNTIL IF/WHEN SQL LOGIC ADDED.
+//app.delete('/api/users/:id', userRouter.deleteUser);
 //USER ENDPOINT SPECS END HERE
 
 const port = process.env.PORT || 3000;
